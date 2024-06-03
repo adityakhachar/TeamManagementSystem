@@ -48,12 +48,15 @@
   .city-location-container {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap; /* Ensures items wrap onto new lines */
   }
   
   .name-email-container .form-group,
   .director-description-container .form-group,
   .city-location-container .form-group {
     flex: 1;
+    min-width: 0; /* Ensures flexibility */
+    margin-bottom: 0; /* Reset margin */
   }
   
   .submit-button {
@@ -79,5 +82,22 @@
   
   .form-check-label {
     margin-left: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .company-signup-form-container {
+      padding: 15px;
+    }
+  
+    .name-email-container,
+    .director-description-container,
+    .city-location-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .submit-button {
+      font-size: 14px;
+    }
   }
   

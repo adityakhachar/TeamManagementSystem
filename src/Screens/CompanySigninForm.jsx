@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 const CompanySigninForm = () => {
   const [formData, setFormData] = useState({
     compemail: '',
-    password: '',
-    city: '',
-    location: ''
+    password: ''
   });
 
   const handleChange = (e) => {
@@ -47,34 +45,6 @@ const CompanySigninForm = () => {
               style={{ background: 'white', width: '100%', height: '50px', outline: 'none', fontSize: '1rem', color: 'black', marginTop: '8px', border: '2px solid #ddd', borderRadius: '6px', padding: '0 15px' }}
               required
             />
-          </div>
-
-          {/* City and Location Fields Side by Side */}
-          <div className="city-location-container" style={{ display: 'flex', marginTop: '20px', columnGap: '15px' }}>
-            <div className="form-group" style={{ flex: 1 }}>
-              <label htmlFor="city" style={{ color: '#333' }}>City:</label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                style={{ background: 'white', width: '100%', height: '50px', outline: 'none', fontSize: '1rem', color: 'black', marginTop: '8px', border: '2px solid #ddd', borderRadius: '6px', padding: '0 15px' }}
-                required
-              />
-            </div>
-            <div className="form-group" style={{ flex: 1 }}>
-              <label htmlFor="location" style={{ color: '#333' }}>Location:</label>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                style={{ background: 'white', width: '100%', height: '50px', outline: 'none', fontSize: '1rem', color: 'black', marginTop: '8px', border: '2px solid #ddd', borderRadius: '6px', padding: '0 15px' }}
-                required
-              />
-            </div>
           </div>
 
           <button type="submit" style={{ height: '55px', width: '100%', color: '#fff', fontSize: '1rem', fontWeight: '400', marginTop: '30px', border: 'none', cursor: 'pointer', transition: 'all 0.2s ease', background: 'rgb(130, 106, 251)' }}>Sign In</button>
