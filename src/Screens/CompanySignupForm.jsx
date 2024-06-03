@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const EmployeeSignUpForm = () => {
   const [formData, setFormData] = useState({
     name: '',
+    password: '',
     compemail: '',
     directorName: '',
     description: '',
@@ -52,6 +53,18 @@ const EmployeeSignUpForm = () => {
                 id="name"
                 name="name"
                 value={formData.name}
+                onChange={handleChange}
+                style={{ background: 'white', width: '100%', height: '50px', outline: 'none', fontSize: '1rem', color: 'black', marginTop: '8px', border: '2px solid #ddd', borderRadius: '6px', padding: '0 15px' }}
+                required
+              />
+            </div>
+            <div className="form-group" style={{ flex: 1 }}>
+              <label htmlFor="password" style={{ color: '#333' }}>Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
                 onChange={handleChange}
                 style={{ background: 'white', width: '100%', height: '50px', outline: 'none', fontSize: '1rem', color: 'black', marginTop: '8px', border: '2px solid #ddd', borderRadius: '6px', padding: '0 15px' }}
                 required

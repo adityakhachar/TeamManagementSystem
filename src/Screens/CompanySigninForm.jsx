@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 const CompanySigninForm = () => {
   const [formData, setFormData] = useState({
@@ -6,15 +7,35 @@ const CompanySigninForm = () => {
     password: ''
   });
 
+  const [error, setError] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Handle form submission logic here
-    // Reset form or navigate to next step
+
+    try {
+      const response = await axios.post('/complogin', {
+        companyEmail: formData.compemail,
+        password: formData.password
+      });
+
+      // Assuming your backend responds with a status code or message indicating success
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+        // Redirect to home page or dashboard (adjust the logic as per your app's routing)
+        window.location.href = '/'; // Redirect to home page
+      } else {
+        // Handle other response statuses if needed
+        setError('Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Login failed. Please try again later.'); // Generic error message
+    }
   };
 
   return (
@@ -48,6 +69,9 @@ const CompanySigninForm = () => {
           </div>
 
           <button type="submit" style={{ height: '55px', width: '100%', color: '#fff', fontSize: '1rem', fontWeight: '400', marginTop: '30px', border: 'none', cursor: 'pointer', transition: 'all 0.2s ease', background: 'rgb(130, 106, 251)' }}>Sign In</button>
+
+          {/* Error message display */}
+          {error && <div style={{ marginTop: '10px', color: 'red', textAlign: 'center' }}>{error}</div>}
 
           {/* Signup Link */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
