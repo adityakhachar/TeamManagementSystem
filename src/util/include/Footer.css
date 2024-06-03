@@ -1,0 +1,60 @@
+.footer-basic {
+  padding: 20px 0;
+  background-color: #f7f7f7;
+  color: #666;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-basic footer {
+  padding: 0;
+  text-align: center;
+}
+
+.footer-basic .social {
+  display: none; /* Hide the social media icons */
+}
+
+.footer-basic .logo-container {
+  margin-bottom: 20px;
+}
+
+.footer-basic .footer-logo {
+  width: 50px; /* Adjust size of the logo as needed */
+  height: 50px;
+  border-radius: 50%; /* Ensures the logo is circular */
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.footer-basic .footer-logo:hover {
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.footer-basic ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-basic ul li {
+  margin-right: 10px;
+}
+
+.footer-basic ul li a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-basic ul li a:hover {
+  color: #333; /* Change color on hover */
+}
+
+.footer-basic .copyright {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}

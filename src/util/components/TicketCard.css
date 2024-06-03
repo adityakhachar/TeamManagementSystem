@@ -1,0 +1,164 @@
+.booking-card {
+  position: relative;
+  width: 100%; /* Ensure it takes full width of the container */
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0; /* Adjust margin if necessary */
+  border-radius: 10px;
+  overflow: hidden;
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+  color: #0a4870;
+  transition: .3s;
+}
+  .booking-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10,72,112, 0);
+    transition: .3s;
+  }
+  
+  .book-container {
+    height: 250px;
+  }
+  
+  .book-container .content {
+    position: relative;
+    opacity: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    transform: translateY(-200px);
+    transition: .3s;
+  }
+  
+  .book-container .content .btn {
+    border: 3px solid white;
+    padding: 10px 15px;
+    background: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 5px;
+  }
+  
+  .book-container .content .btn:hover {
+    background: white;
+    color: #0a4870;
+  }
+  
+  .informations-container {
+    z-index: 1;
+    transform: translateY(95px);
+    transition: .3s;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .informations-container .title {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+  }
+  
+  .informations-container .sub-title {
+    font-size: 0.9em;
+    margin-top: 0;
+    color: #7d7d7d;
+  }
+  
+  .informations-container .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  
+  .informations-container .price svg {
+    margin-right: 5px;
+  }
+  
+  .more-information {
+    opacity: 0;
+    margin-top: 5px;
+    transition: .3s;
+  }
+  
+  .info-and-date-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .info-and-date-container .box {
+    width: 45%;
+    padding: 5px 10px;
+    border: 1px solid #e3ebf1;
+  }
+  
+  .info-and-date-container .box svg {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  
+  .info-and-date-container .box p {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+  
+  .info-and-date-container .box.info {
+    margin-right: 5%;
+  }
+  
+  .informations-container .disclaimer {
+    margin-top: 15px;
+    font-size: 0.7em;
+    color: #7d7d7d;
+  }
+  
+  .booking-card:hover::before {
+    background: rgba(10,72,112, 0.6);
+  }
+  
+  .booking-card:hover .book-container .content {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  
+  .booking-card:hover .informations-container {
+    transform: translateY(0px);
+  }
+  
+  .booking-card:hover .informations-container .more-information {
+    opacity: 1;
+  }
+  
+  .booking-card:not(:hover):focus-within::before {
+    background: rgba(10,72,112, 0.6);
+  }
+  
+  .booking-card:not(:hover):focus-within .book-container .content {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  
+  .booking-card:not(:hover):focus-within .informations-container {
+    transform: translateY(0px);
+  }
+  
+  .booking-card:not(:hover):focus-within .informations-container .more-information {
+    opacity: 1;
+  }
+  
