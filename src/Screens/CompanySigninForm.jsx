@@ -18,7 +18,7 @@ const CompanySigninForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/complogin', {
+      const response = await axios.post('http://localhost:5000/api/company/cmplogin', {
         companyEmail: formData.compemail,
         password: formData.password
       });
