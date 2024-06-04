@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+// import { updateExperienceList} from './globalData';
 const EmployeeSignup3 = () => {
     const [experienceList, setExperienceList] = useState([
         {
@@ -32,10 +33,30 @@ const EmployeeSignup3 = () => {
             }
         ]);
     };
-
-    const handleSubmit = (e) => {
+    let navigate = useNavigate();
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(experienceList);
+        const Data = experienceList;
+        global.fData[0].experienceDetails = [...global.fData[0].experienceDetails,...Data];
+        console.log(global.fData); 
+        const response = await fetch("http://localhost:5000/api/employee/register", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(global.fData[0])
+        });
+        const json = await response.json();
+        console.log(json);
+        if (!json.status === 201) {
+            alert("Enter valid data!!");
+        }
+        else {
+            alert("Registered!!");
+            navigate('/');
+        }
+        // updateExperienceList(experienceList);
         // Implement your form submission logic here
     };
 
@@ -164,7 +185,7 @@ const EmployeeSignup3 = () => {
                                     {/* Submit button */}
                                     <div className="row mb-2" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                         <div className="col">
-                                            <Link type="submit" className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/">Submit</Link>
+                                            <button type="submit" className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/">Submit</button>
                                         </div>
                                     </div>
                                     <p className='text-center mt-3'> 3 of 3</p>

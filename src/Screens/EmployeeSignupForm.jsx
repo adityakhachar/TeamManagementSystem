@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+// import { updateEmployeeData , emplo/yeeData} from './globalData';
 
 const EmployeeSignup = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,9 @@ const EmployeeSignup = () => {
     linkedin: '',
     password: '', // Add password to the state
     technologies: [],
-    skills: []
+    skills: [],
+    educationDetails: [],
+    experienceDetails : []
   });
 
   const handleChange = (e) => {
@@ -32,11 +35,16 @@ const EmployeeSignup = () => {
       skills: checked ? [...prevState.skills, name] : prevState.skills.filter(skill => skill !== name)
     }));
   };
-
+let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your form submission logic here
-    console.log(formData);
+    const Data = formData;
+    global.fData = [Data];
+    console.log(global.fData);
+    navigate('/EmployeeSignup2')
+    // updateEmployeeData(formData);
+    // console.log(employeeData);
   };
 
   return (
@@ -46,7 +54,7 @@ const EmployeeSignup = () => {
           <div className="col-md-8 col-lg-6 col-xl-6">
             <h2 className="signup-header mt-2" style={{ textAlign: 'center', marginBottom: '2rem', color: 'black' }}>Employee Details</h2>
             <div className="signup-container" style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="form-group mb-4">
                   <div className="row">
                     <div className="col">
@@ -201,7 +209,7 @@ const EmployeeSignup = () => {
                 </div>
                 <div className="row mb-2" style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div className="col">
-                    <Link type="button" className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/EmployeeSignup2">Add Education</Link>
+                    <Link type="button" onClick={handleSubmit} className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/EmployeeSignup2">Add Education</Link>
                   </div>
                 </div>
                 <p style={{ marginBottom: '10px', color: '#333', textAlign: 'center' }}> 1 of 3</p>

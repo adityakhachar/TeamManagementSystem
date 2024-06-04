@@ -6,7 +6,7 @@ const educationSchema = new mongoose.Schema({
     collegeCity: { type: String, required: true },
     joiningDate: { type: Date, required: true },
     leavingDate: { type: Date },
-    courseType: { type: String, enum: ['BCA', 'Btech', 'MCA', 'Mtech'], required: true },
+    courseType: { type: String, enum: ['BCA', 'BTech', 'MCA', 'Mtech'], required: true },
     percentage: { type: Number, required: true },
     description: { type: String }
 });
@@ -29,7 +29,7 @@ const employeeSchema = new mongoose.Schema({
     email: { type: String, required: true },
     linkedin: { type: String, required: true },
     technologies: [{ type: String, enum: ['PHP', 'Java', 'C'] }],
-    skills: [{ type: String, enum: ['HTML', 'CSS', 'BOOTSTRAP 5'] }],
+    skills: [{ type: String, enum: ['HTML', 'CSS', 'BOOTSTRAP5'] }],
     educationDetails: [educationSchema], // Array of education details
     experienceDetails: [experienceSchema] // Array of experience details
 }, { collection: 'employees' });

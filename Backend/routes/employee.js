@@ -29,8 +29,8 @@ router.post('/register', async (req, res) => {
             linkedin,
             technologies,
             skills,
-            educationDetails,
-            experienceDetails
+            educationDetails: educationDetails ? educationDetails : [], // Handle potential missing data
+            experienceDetails: experienceDetails ? experienceDetails : [] // Handle potential missing data
         });
 
         await newEmployee.save();

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+// import { updateEducationList, updateEmployeeData } from './globalData';
+
 const EmployeeSignup2 = () => {
     const [educationList, setEducationList] = useState([
         {
@@ -9,7 +11,7 @@ const EmployeeSignup2 = () => {
             leavingDate: '',
             description: '',
             courseType: '',
-            marks: ''
+            percentage: ''
         }
     ]);
 
@@ -30,16 +32,21 @@ const EmployeeSignup2 = () => {
                 leavingDate: '',
                 description: '',
                 courseType: '',
-                marks: ''
+                percentage: ''
             }
         ]);
     };
-
+    let navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(educationList);
+        const Data = educationList;
+        global.fData[0].educationDetails = [...global.fData[0].educationDetails,...Data];
+        console.log(global.fData); 
+        navigate('/EmployeeSignup3')
+        // updateEducationList(educationList); // Update global education list with current state
         // Implement your form submission logic here
     };
+
 
     return (
         <div className="vh-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: '#E0F4FF' }}>
@@ -49,7 +56,7 @@ const EmployeeSignup2 = () => {
                         <div className="col-md-8 col-lg-6 col-xl-6">
                             <div className="signup-container">
                                 <h2 className="signup-header mt-2" style={{ textAlign: 'center', marginBottom: '2rem' }}>Education Details</h2>
-                                <form onSubmit={handleSubmit} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxHeight: '80vh', overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#C5C5C5 #F0F0F0' }}>
+                                <form  style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxHeight: '80vh', overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#C5C5C5 #F0F0F0' }}>
                                     {/* Education Entries */}
                                     {educationList.map((education, index) => (
                                         <div key={index} className="education-block mb-4" style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px', marginBottom: '15px' }}>
@@ -145,8 +152,8 @@ const EmployeeSignup2 = () => {
                                                     </select>
                                                 </div>
                                                 <div className="form-group" style={{ flex: '0 0 48%' }}>
-                                                    <label htmlFor={`marks-${index}`} className="form-label text-black">Percentage/Marks</label>
-                                                    <input type="text" id={`marks-${index}`} name="marks" value={education.marks} onChange={e => handleChange(index, e)} required style={{
+                                                    <label htmlFor={`percentage-${index}`} className="form-label text-black">Percentage/Marks</label>
+                                                    <input type="text" id={`percentage-${index}`} name="percentage" value={education.percentage} onChange={e => handleChange(index, e)} required style={{
                                                         width: '100%',
                                                         padding: '0.5rem',
                                                         borderRadius: '0.25rem',
@@ -188,7 +195,7 @@ const EmployeeSignup2 = () => {
                                     {/* Submit button */}
                                     <div className="row mb-2" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                         <div className="col">
-                                            <Link type="submit" className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/EmployeeSignup3">Submit</Link>
+                                            <Link type="submit" onClick={handleSubmit} className="btn btn-primary btn-block" style={{ width: '100%', padding: '0.5rem', backgroundColor: 'rgb(130, 106, 251)', color: 'white' }} to="/EmployeeSignup3">Submit</Link>
                                         </div>
                                     </div>
                                     <p className='text-center mt-3'> 2 of 3</p>
