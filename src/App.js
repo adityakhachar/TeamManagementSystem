@@ -14,6 +14,7 @@ import EmployeeSignup2 from './Screens/EmployeeSignup2.jsx';
 import EmployeeSignup3 from './Screens/EmployeeSignup3.jsx';
 import Company from './Screens/Company.jsx';
 import Employee from './Screens/Employee.jsx';
+import CompanyDetails from './Screens/CompanyDetails.jsx';
 function App() {
   return (
       <Router>
@@ -29,7 +30,7 @@ function App() {
                   <Route path="/employeesignup3" element={<EmployeeSignup3 />} />
                   <Route path="/company" element={<Company/>} />
                   <Route path="/employee" element={<Employee/>} />
-                     
+                  <Route path="/company/:id" element={<CompanyDetails />} /> {/* Route for CompanyDetails with ID parameter */}
               </Routes>
           </div>
       </Router>

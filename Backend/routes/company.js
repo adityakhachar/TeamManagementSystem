@@ -92,5 +92,20 @@ router.post('/getComp',async (req,res)=>{
 });
 
 
+// Route to get company details by ID
+router.get('/:id', async (req, res) => {
+    const companyId = req.params.id;
+    try {
+        const companyDetails = await Company.findById(companyId);
+        if (!companyDetails) {
+            return res.status(404).json({ message: 'Company not found.' });
+        }
+        res.status(200).json(companyDetails);
+    } catch (error) {
+        console.error('Error fetching company details:', error);
+        res.status(500).json({ message: 'An error occurred while fetching company details.' });
+    }
+});
+
 
 module.exports = router;

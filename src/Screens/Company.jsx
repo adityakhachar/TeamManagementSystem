@@ -2,13 +2,27 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../util/include/Navbar';
 import Footer from '../util/include/Footer';
 import DataTable from '../util/components/DataTable';
+import CompProfile from '../util/components/CompProfile'; // Import the CompProfile component
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 export default function Company() {
     const [companyData, setCompanyData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCompany, setSelectedCompany] = useState(null); // State to track the selected company
+    const navigate = useNavigate(); // Initialize useNavigate hook for navigation
 
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
+    };
+
+    const handleShowProfile = (company) => {
+        setSelectedCompany(company); // Set the selected company to display the profile
+        // Redirect to company details page with the company's id
+        navigate(`/company/${company._id}`);
+    };
+
+    const handleCloseProfile = () => {
+        setSelectedCompany(null); // Close the profile view
     };
 
     const loadCompany = async () => {
@@ -37,18 +51,31 @@ export default function Company() {
     );
 
     return (
-        <div style={{ backgroundColor: '#E0F4FF', color: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <NavBar />
-            <div className="container">
-                <DataTable companyData={filteredCompanyData} searchTerm={searchTerm} handleSearch={handleSearch} />
+        <div className={`container-wrapper ${selectedCompany ? 'blur' : ''}`}>
+            <div style={{ backgroundColor: '#E0F4FF', color: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+                <NavBar />
+                <div className="container">
+                    <DataTable 
+                        companyData={filteredCompanyData} 
+                        searchTerm={searchTerm} 
+                        handleSearch={handleSearch} 
+                        handleShowProfile={handleShowProfile} // Pass the handleShowProfile function
+                    />
+                </div>
+                <Footer style={{ 
+                    backgroundColor: '#f1f1f1', 
+                    textAlign: 'center', 
+                    padding: '1rem', 
+                    borderTop: '1px solid #ccc',
+                    marginTop: 'auto' // Pushes footer to the bottom
+                }} />
             </div>
-            <Footer style={{ 
-                backgroundColor: '#f1f1f1', 
-                textAlign: 'center', 
-                padding: '1rem', 
-                borderTop: '1px solid #ccc',
-                marginTop: 'auto' // Pushes footer to the bottom
-            }} />
+            {selectedCompany && (
+                <div className="profile-overlay">
+                    <CompProfile company={selectedCompany} onClose={handleCloseProfile} />
+                </div>
+            )}
         </div>
     );
 }
+    

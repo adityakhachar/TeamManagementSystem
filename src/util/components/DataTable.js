@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DataTable.css'; // Import the custom CSS file
 
 const DataTable = ({ companyData, searchTerm, handleSearch }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="card">
             <div className="card-body d-flex justify-content-between align-items-center">
-                
                 <h5 className="card-title m-0">List of companies</h5>
                 <div className="search-bar">
                     <input
@@ -35,7 +37,9 @@ const DataTable = ({ companyData, searchTerm, handleSearch }) => {
                                 <td>{company.city}</td>
                                 <td>{company.location}</td>
                                 <td className="description-cell">{company.description}</td>
-                                <td><button className="button">Get more details</button></td>
+                                <td>
+                                    <button className="button" onClick={() => navigate(`/company/${company._id}`)}>Get more details</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
