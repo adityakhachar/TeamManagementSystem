@@ -5,6 +5,11 @@ import DataTable from '../util/components/DataTable';
 
 export default function Company() {
     const [companyData, setCompanyData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     const loadCompany = async () => {
         try {
@@ -25,13 +30,25 @@ export default function Company() {
         loadCompany();
     }, []);
 
+    const filteredCompanyData = companyData.filter(item =>
+        item.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div style={{ backgroundColor: '#E0F4FF', color: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <NavBar />
-            <div>
-                <DataTable companyData={companyData} />
+            <div className="container">
+                <DataTable companyData={filteredCompanyData} searchTerm={searchTerm} handleSearch={handleSearch} />
             </div>
-            <Footer />
+            <Footer style={{ 
+                backgroundColor: '#f1f1f1', 
+                textAlign: 'center', 
+                padding: '1rem', 
+                borderTop: '1px solid #ccc',
+                marginTop: 'auto' // Pushes footer to the bottom
+            }} />
         </div>
     );
 }

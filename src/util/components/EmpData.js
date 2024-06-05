@@ -1,12 +1,11 @@
 import React from 'react';
 import './DataTable.css'; // Import the custom CSS file
 
-const DataTable = ({ companyData, searchTerm, handleSearch }) => {
+const EmpData = ({ employeeData, searchTerm, handleSearch }) => {
     return (
         <div className="card">
             <div className="card-body d-flex justify-content-between align-items-center">
-                
-                <h5 className="card-title m-0">List of companies</h5>
+                <h5 className="card-title m-0">List of Employees</h5>
                 <div className="search-bar">
                     <input
                         type="text"
@@ -14,6 +13,9 @@ const DataTable = ({ companyData, searchTerm, handleSearch }) => {
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={handleSearch}
+                        // style={{ backgroundColor: '#87C4FF' }}
+                        // onFocus={(e) => e.target.style.backgroundColor = 'white'}
+                        // onBlur={(e) => e.target.style.backgroundColor = '#87C4FF'}
                     />
                 </div>
             </div>
@@ -21,20 +23,20 @@ const DataTable = ({ companyData, searchTerm, handleSearch }) => {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th scope="col">Company Name</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Technologies</th>
+                            <th scope="col">Skills</th>
+                            <th scope="col">Linkedin Profile</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="customtable">
-                        {companyData.map((company, index) => (
+                        {employeeData.map((employee, index) => (
                             <tr key={index}>
-                                <td>{company.companyName}</td>
-                                <td>{company.city}</td>
-                                <td>{company.location}</td>
-                                <td className="description-cell">{company.description}</td>
+                                <td>{employee.name}</td>
+                                <td>{Array.isArray(employee.technologies) ? employee.technologies.join(', ') : employee.technologies}</td>
+                                <td>{Array.isArray(employee.skills) ? employee.skills.join(', ') : employee.skills}</td>
+                                <td><a href={employee.linkedin} target="_blank" rel="noopener noreferrer">{employee.linkedin}</a></td>
                                 <td><button className="button">Get more details</button></td>
                             </tr>
                         ))}
@@ -45,4 +47,4 @@ const DataTable = ({ companyData, searchTerm, handleSearch }) => {
     );
 };
 
-export default DataTable;
+export default EmpData;

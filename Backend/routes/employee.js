@@ -73,4 +73,14 @@ router.post('/emplogin', async (req, res) => {
     }
 });
 
+router.post('/getEmp',async (req,res)=>{
+    try{
+        const employee = await Employee.find({});
+        res.status(200).json(employee);
+    }catch(error){
+        console.error(error);
+        res.status(500).send("server error");
+    }
+});
+
 module.exports = router;

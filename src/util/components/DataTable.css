@@ -1,11 +1,4 @@
-/* DataTable.css */
-
-.container {
-    margin-top: 100px;
-    margin-bottom: 100px;
-  }
-  
-  .card {
+.card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -15,56 +8,114 @@
     background-clip: border-box;
     border: 1px solid black;
     border-radius: 15px;
-  }
-  
-  .card-body {
-    flex: 1 1 auto;
-    padding: 1.25rem;
-  }
-  
-  .card .card-title {
-    position: relative;
+    margin: 30px 10px; /* Adjusted margins for mobile */
+}
+
+.card-body {
+    padding: 1rem; /* Reduced padding for mobile */
+}
+
+.card .card-title {
     font-weight: 600;
     margin-bottom: 10px;
-  }
-  
-  .table {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.card-title h5 {
+    margin-right: 10px;
+}
+
+.search-bar {
+    margin-left: auto;
+    max-width: 100%; /* Adjust max-width for mobile */
+    background-color: rgb(224, 244, 255); /* Initial background color */
+    padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.search-bar.active,
+.search-bar input:focus {
+    background-color: #fff; /* White background color when active or focused */
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: black; /* Font color */
+    outline: none;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.search-bar input::placeholder {
+    color: black; /* Placeholder color */
+}
+
+.search-bar:hover {
+    background-color: #cdf1ff; /* Hover background color */
+}
+
+.search-bar input:hover {
+    cursor: text; /* Change cursor on hover */
+}
+
+.table {
     width: 100%;
     max-width: 100%;
     margin-bottom: 1rem;
     background-color: transparent;
     color: black;
-  }
-  
-  * {
-    outline: none;
-  }
-  
-  .table th,
-  .table thead th {
+}
+
+.table th,
+.table thead th {
     font-weight: 500;
-  }
-  
-  .table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-  }
-  
-  .table th {
     padding: 1rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
-  }
-  
-  th {
-    text-align: inherit;
-  }
-  
-  .m-b-20 {
-    margin-bottom: 20px;
-  }
-  
-  .button {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e0f4ff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-responsive {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+/* WebKit browsers (Chrome, Safari) */
+.table-responsive::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background-color: #e0f4ff; /* Match your background color */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #87c4ff; /* Adjust scrollbar thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.description-cell {
+    max-width: 300px; /* Adjust as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button {
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -81,39 +132,40 @@
     cursor: pointer;
     text-decoration: none;
     margin-bottom: 10px;
-  }
-  
-  .button:hover {
+}
+
+.button:hover { 
     background-color: #1976a6;
     border-color: #1976a6;
-  }
-  
-  /* Styling odd and even rows */
-  .table tbody tr:nth-child(odd) {
-    background-color: #e0f4ff;
-  }
-  
-  .table tbody tr:nth-child(even) {
-    background-color: #fff;
-  }
-  
-  /* Scrollbar customization */
-  .scrollable-table-container {
-    max-height: 400px; /* Adjust the height as needed */
-    overflow-y: auto;
-  }
-  
-  /* WebKit browsers (Chrome, Safari) */
-  .scrollable-table-container::-webkit-scrollbar {
-    width: 10px; /* Adjust the width of the scrollbar */
-  }
-  
-  .scrollable-table-container::-webkit-scrollbar-track {
-    background-color: #e0f4ff; /* Match your background color */
-  }
-  
-  .scrollable-table-container::-webkit-scrollbar-thumb {
-    background-color: #87c4ff; /* Adjust scrollbar thumb color */
-    border-radius: 10px; /* Rounded corners */
-  }
-  
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card {
+        margin: 10px; /* Reduced margin for mobile */
+    }
+
+    .card-body {
+        padding: 0.75rem; /* Reduced padding for mobile */
+    }
+
+    .search-bar {
+        max-width: 100%; /* Full width for mobile */
+    }
+
+    .table th,
+    .table thead th,
+    .table td {
+        padding: 0.75rem; /* Reduced padding for mobile */
+        font-size: 0.875rem; /* Reduced font size for mobile */
+    }
+
+    .description-cell {
+        max-width: 200px; /* Adjusted max-width for mobile */
+    }
+
+    .button {
+        padding: 0.25rem 0.5rem; /* Reduced padding for mobile */
+        font-size: 0.875rem; /* Reduced font size for mobile */
+    }
+}

@@ -78,7 +78,7 @@ function NavBar() {
             <li className="nav-item">
               <NavLink
                 exact
-                to="/employees"
+                to="/employee"
                 activeClassName="active"
                 className="nav-links"
                 onClick={closeMenu}
