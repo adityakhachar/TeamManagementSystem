@@ -81,4 +81,16 @@ router.post('/cmplogin', async (req, res) => {
     }
 });
 
+router.post('/getComp',async (req,res)=>{
+    try{
+        const companies = await Company.find({});
+        res.status(200).json(companies);
+    }catch(error){
+        console.error(error);
+        res.status(500).send("server error");
+    }
+});
+
+
+
 module.exports = router;

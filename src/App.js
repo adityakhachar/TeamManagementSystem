@@ -12,6 +12,7 @@ import EmployeeSignUpForm from './Screens/CompanySignupForm.jsx';
 import EmployeeSignupForm from './Screens/EmployeeSignupForm.jsx';
 import EmployeeSignup2 from './Screens/EmployeeSignup2.jsx';
 import EmployeeSignup3 from './Screens/EmployeeSignup3.jsx';
+import Company from './Screens/Company.jsx';
 function App() {
   return (
       <Router>
@@ -24,7 +25,9 @@ function App() {
                   <Route path="/emplogin" element={<EmployeeSigninFormm/>}/>
                   <Route path="/empsignup" element={<EmployeeSignupForm/>}/>      
                   <Route path="/EmployeeSignup2" element={<EmployeeSignup2/>}/>
-                  <Route path="/employeesignup3" element={<EmployeeSignup3 />} />   
+                  <Route path="/employeesignup3" element={<EmployeeSignup3 />} />
+                  <Route path="/company" element={<Company/>} />
+                     
               </Routes>
           </div>
       </Router>
