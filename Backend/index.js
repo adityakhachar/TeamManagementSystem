@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors'); // Import cors middleware
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const connectDB = require('./db');
 const companyRoutes = require('./routes/company');
 const employeeRoutes = require('./routes/employee'); // Import employee routes
