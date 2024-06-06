@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const Company = require('../models/Company');
 
 // Route to handle company registration
+
+// Route to handle company registration
 router.post('/register', async (req, res) => {
     try {
         const {
@@ -22,6 +24,12 @@ router.post('/register', async (req, res) => {
         // Ensure password is provided
         if (!password) {
             return res.status(400).json({ message: 'Password is required.' });
+        }
+
+        // Check if companyEmail already exists
+        const existingCompany = await Company.findOne({ companyEmail });
+        if (existingCompany) {
+            return res.status(400).json({ message: 'Email is already registered.' });
         }
 
         // Hash the password
@@ -47,7 +55,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Server error, please try again later.' });
     }
 });
-
 
 // Route to handle company login
 router.post('/cmplogin', async (req, res) => {

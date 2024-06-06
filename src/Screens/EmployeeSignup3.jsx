@@ -3,63 +3,74 @@ import {useNavigate} from 'react-router-dom';
 // import { updateExperienceList} from './globalData';
 const EmployeeSignup3 = () => {
     const [experienceList, setExperienceList] = useState([
-        {
-            companyName: '',
-            companyCity: '',
-            joiningDate: '',
-            resigningDate: '',
-            description: '',
-            position: ''
-        }
+      {
+        companyName: '',
+        companyCity: '',
+        joiningDate: '',
+        resigningDate: '',
+        description: '',
+        position: ''
+      }
     ]);
-
+  
     const handleChange = (index, e) => {
-        const { name, value } = e.target;
-        const list = [...experienceList];
-        list[index][name] = value;
-        setExperienceList(list);
+      const { name, value } = e.target;
+      const list = [...experienceList];
+      list[index][name] = value;
+      setExperienceList(list);
     };
-
+  
     const handleAddClick = () => {
-        setExperienceList(prevState => [
-            ...prevState,
-            {
-                companyName: '',
-                companyCity: '',
-                joiningDate: '',
-                resigningDate: '',
-                description: '',
-                position: ''
-            }
-        ]);
+      setExperienceList(prevState => [
+        ...prevState,
+        {
+          companyName: '',
+          companyCity: '',
+          joiningDate: '',
+          resigningDate: '',
+          description: '',
+          position: ''
+        }
+      ]);
     };
+  
     let navigate = useNavigate();
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(experienceList);
-        const Data = experienceList;
-        global.fData[0].experienceDetails = [...global.fData[0].experienceDetails,...Data];
-        console.log(global.fData); 
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // Update formData with experienceList
+      const updatedFormData = {
+        ...JSON.parse(localStorage.getItem('formData')),
+        experienceDetails: [...experienceList]
+      };
+      localStorage.setItem('formData', JSON.stringify(updatedFormData));
+  
+      console.log(updatedFormData);
+  
+      // Submit formData to API
+      try {
         const response = await fetch("http://localhost:5000/api/employee/register", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(global.fData[0])
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedFormData)
         });
+  
         const json = await response.json();
         console.log(json);
-        if (!json.status === 201) {
-            alert("Enter valid data!!");
+  
+        if (response.status === 201) {
+          alert("Registered!!");
+          navigate('/');
+        } else {
+          alert("Failed to register. Please enter valid data!!");
         }
-        else {
-            alert("Registered!!");
-            navigate('/');
-        }
-        // updateExperienceList(experienceList);
-        // Implement your form submission logic here
+      } catch (error) {
+        console.error('Error registering employee:', error);
+        alert("Failed to register due to network error. Please try again later!!");
+      }
     };
-
     return (
         <div className="vh-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: '#E0F4FF' }}>
             <section className="mb-5 h-auto" style={{ width: '100%' }}>

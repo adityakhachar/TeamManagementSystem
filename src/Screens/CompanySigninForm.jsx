@@ -23,18 +23,19 @@ const CompanySigninForm = () => {
         password: formData.password
       });
 
-      // Assuming your backend responds with a status code or message indicating success
       if (response.status === 200) {
         console.log('Login successful:', response.data);
-        // Redirect to home page or dashboard (adjust the logic as per your app's routing)
+        alert('Login Successfully!!');
+        // Redirect to home page or dashboard
         window.location.href = '/'; // Redirect to home page
       } else {
-        // Handle other response statuses if needed
         setError('Login failed. Please check your credentials.');
+        alert('Login failed. Please check your credentials.');
       }
     } catch (error) {
       console.error('Login error:', error);
       setError('Login failed. Please try again later.'); // Generic error message
+      alert('Login failed. Please try again later.');
     }
   };
 

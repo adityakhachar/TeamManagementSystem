@@ -11,8 +11,8 @@ const EmployeeSignup = () => {
     password: '', // Add password to the state
     technologies: [],
     skills: [],
-    educationDetails: [],
-    experienceDetails : []
+    educationDetails: [], // Initialize educationDetails array
+    experienceDetails: []
   });
 
   const handleChange = (e) => {
@@ -35,16 +35,16 @@ const EmployeeSignup = () => {
       skills: checked ? [...prevState.skills, name] : prevState.skills.filter(skill => skill !== name)
     }));
   };
-let navigate = useNavigate();
+
+  let navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    const Data = formData;
-    global.fData = [Data];
-    console.log(global.fData);
-    navigate('/EmployeeSignup2')
-    // updateEmployeeData(formData);
-    // console.log(employeeData);
+    // Store formData in localStorage
+    localStorage.setItem('formData', JSON.stringify(formData));
+    console.log(formData);
+    // Navigate to the next step
+    navigate('/EmployeeSignup2');
   };
 
   return (

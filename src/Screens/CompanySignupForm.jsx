@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const EmployeeSignUpForm = () => {
   const [formData, setFormData] = useState({
-    companyName: '', // Add companyName field
+    companyName: '', 
     password: '',
-    companyEmail: '', // Add companyEmail field
+    companyEmail: '', 
     directorName: '',
     description: '',
     technologies: [],
@@ -38,8 +38,8 @@ const EmployeeSignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error message
-    console.log('Form submitted:', formData); // Debug log
+    setError(''); 
+    console.log('Form submitted:', formData); 
   
     try {
       const response = await fetch("http://localhost:5000/api/company/register", {
@@ -51,21 +51,19 @@ const EmployeeSignUpForm = () => {
       });
   
       const result = await response.json();
-      console.log('Server response:', result); // Debug log
+      console.log('Server response:', result); 
       
-      if (!result.status === 201) {
-        setError('Registration failed, please try again.');
+      if (response.status !== 201) {
+        alert(result.message || 'Registration failed, please try again.');
       } else {
+        alert('Thank you for registration');
         navigate('/');
-        // alert('Company registered successfully!'); // Optional: Show an alert
-         // Redirect to the home page after successful registration
       }
     } catch (err) {
-      console.error('Fetch error:', err); // Debug log
+      console.error('Fetch error:', err); 
       setError('An error occurred, please try again.');
     }
   };
-  
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#E0F4FF', padding: '20px' }}>

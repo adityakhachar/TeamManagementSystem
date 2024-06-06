@@ -4,49 +4,53 @@ import { Link ,useNavigate} from 'react-router-dom';
 
 const EmployeeSignup2 = () => {
     const [educationList, setEducationList] = useState([
-        {
-            collegeName: '',
-            collegeCity: '',
-            joiningDate: '',
-            leavingDate: '',
-            description: '',
-            courseType: '',
-            percentage: ''
-        }
+      {
+        collegeName: '',
+        collegeCity: '',
+        joiningDate: '',
+        leavingDate: '',
+        description: '',
+        courseType: '',
+        percentage: ''
+      }
     ]);
-
+  
     const handleChange = (index, e) => {
-        const { name, value } = e.target;
-        const list = [...educationList];
-        list[index][name] = value;
-        setEducationList(list);
+      const { name, value } = e.target;
+      const list = [...educationList];
+      list[index][name] = value;
+      setEducationList(list);
     };
-
+  
     const handleAddClick = () => {
-        setEducationList(prevState => [
-            ...prevState,
-            {
-                collegeName: '',
-                collegeCity: '',
-                joiningDate: '',
-                leavingDate: '',
-                description: '',
-                courseType: '',
-                percentage: ''
-            }
-        ]);
+      setEducationList(prevState => [
+        ...prevState,
+        {
+          collegeName: '',
+          collegeCity: '',
+          joiningDate: '',
+          leavingDate: '',
+          description: '',
+          courseType: '',
+          percentage: ''
+        }
+      ]);
     };
+  
     let navigate = useNavigate();
+  
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const Data = educationList;
-        global.fData[0].educationDetails = [...global.fData[0].educationDetails,...Data];
-        console.log(global.fData); 
-        navigate('/EmployeeSignup3')
-        // updateEducationList(educationList); // Update global education list with current state
-        // Implement your form submission logic here
+      e.preventDefault();
+      // Store educationList in formData
+      const updatedFormData = {
+        ...JSON.parse(localStorage.getItem('formData')),
+        educationDetails: [...educationList]
+      };
+      localStorage.setItem('formData', JSON.stringify(updatedFormData));
+      console.log(updatedFormData);
+      // Navigate to the next step
+      navigate('/EmployeeSignup3');
     };
-
 
     return (
         <div className="vh-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: '#E0F4FF' }}>
