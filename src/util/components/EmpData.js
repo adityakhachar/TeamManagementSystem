@@ -1,7 +1,7 @@
 import React from 'react';
 import './DataTable.css'; // Import the custom CSS file
 
-const EmpData = ({ employeeData, searchTerm, handleSearch }) => {
+const EmpData = ({ employeeData, searchTerm, handleSearch, handleShowEmpProfile }) => {
     return (
         <div className="card">
             <div className="card-body d-flex justify-content-between align-items-center">
@@ -13,9 +13,6 @@ const EmpData = ({ employeeData, searchTerm, handleSearch }) => {
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={handleSearch}
-                        // style={{ backgroundColor: '#87C4FF' }}
-                        // onFocus={(e) => e.target.style.backgroundColor = 'white'}
-                        // onBlur={(e) => e.target.style.backgroundColor = '#87C4FF'}
                     />
                 </div>
             </div>
@@ -37,7 +34,14 @@ const EmpData = ({ employeeData, searchTerm, handleSearch }) => {
                                 <td>{Array.isArray(employee.technologies) ? employee.technologies.join(', ') : employee.technologies}</td>
                                 <td>{Array.isArray(employee.skills) ? employee.skills.join(', ') : employee.skills}</td>
                                 <td><a href={employee.linkedin} target="_blank" rel="noopener noreferrer">{employee.linkedin}</a></td>
-                                <td><button className="button">Get more details</button></td>
+                                <td>
+                                    <button 
+                                        className="button" 
+                                        onClick={() => handleShowEmpProfile(employee)}
+                                    >
+                                        Get more details
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

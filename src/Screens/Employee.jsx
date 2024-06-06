@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../util/include/Navbar';
 import Footer from '../util/include/Footer';
-import DataTable from '../util/components/EmpData';
+import EmpData from '../util/components/EmpData'; // Ensure correct path
+import EmpProfile from '../util/components/EmpProfile'; // Ensure correct path
+import { useNavigate } from 'react-router-dom';
 
 export default function Employee() {
     const [employeeData, setEmployeeData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-
+    const [selectedEmployee, setSelectedEmployee] = useState(null); // State to track the selected employee
+    const navigate = useNavigate();
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
+    };
+
+    const handleShowEmpProfile = (employee) => {
+        console.log('Button clicked', employee); // Add this line
+        setSelectedEmployee(employee); // Set the selected employee to display the profile
+        navigate(`/employee/${employee._id}`);
+    };
+
+    const handleCloseProfile = () => {
+        setSelectedEmployee(null); // Close the employee profile view
     };
 
     const loadEmployee = async () => {
@@ -47,18 +60,30 @@ export default function Employee() {
     });
 
     return (
-        <div style={{ backgroundColor: '#E0F4FF', color: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <NavBar />
-            <div className="container" style={{ flex: '1 0 auto' }}>
-                <DataTable employeeData={filteredEmployeeData} searchTerm={searchTerm} handleSearch={handleSearch} />
+        <div className={`container-wrapper ${selectedEmployee ? 'blur' : ''}`}>
+            <div style={{ backgroundColor: '#E0F4FF', color: 'black', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+                <NavBar />
+                <div className="container" style={{ flex: '1 0 auto' }}>
+                    <EmpData 
+                        employeeData={filteredEmployeeData} 
+                        searchTerm={searchTerm} 
+                        handleSearch={handleSearch}
+                        handleShowEmpProfile={handleShowEmpProfile} // Pass the handleShowEmpProfile function
+                    />
+                </div>
+                <Footer style={{ 
+                    backgroundColor: '#f1f1f1', 
+                    textAlign: 'center', 
+                    padding: '1rem', 
+                    borderTop: '1px solid #ccc',
+                    marginTop: 'auto' // Pushes footer to the bottom
+                }} />
             </div>
-            <Footer style={{ 
-                backgroundColor: '#f1f1f1', 
-                textAlign: 'center', 
-                padding: '1rem', 
-                borderTop: '1px solid #ccc',
-                marginTop: 'auto' // Pushes footer to the bottom
-            }} />
+            {selectedEmployee && (
+                <div className="profile-overlay">
+                    <EmpProfile employee={selectedEmployee} onClose={handleCloseProfile} />
+                </div>
+            )}
         </div>
     );
 }
