@@ -19,6 +19,7 @@ const CompProfile = ({ company, onClose }) => {
           <div className="col-sm-4 bg-c-lite-green user-profile">
             <div className="card-block text-center text-white">
               <div className="m-b-25">
+              {/* <a href="https://www.flaticon.com/free-icons/company" title="company icons">Company icons created by Freepik - Flaticon</a> */}
                 <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
               </div>
               <h6 className="f-w-600">{company.companyName}</h6>
@@ -78,7 +79,7 @@ const CompProfile = ({ company, onClose }) => {
           </div>
         </div>
       </div>
-      <button className="exit-button" onClick={handleClose}>Close</button>
+      <button className="exit-button" onClick={handleClose}>x</button>
     </div>
   );
 };

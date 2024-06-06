@@ -2,6 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.css'; // Import the custom CSS file for styles
 
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+};
+
 const EmpProfile = ({ employee, onClose }) => {
   const navigate = useNavigate();
 
@@ -37,13 +42,19 @@ const EmpProfile = ({ employee, onClose }) => {
                 </div>
                 <div className="col-sm-6">
                   <p className="m-b-10 f-w-600">Email</p>
-                  <h6 className="text-muted f-w-400">{employee.email}</h6>
+                  <h6 className="text-muted f-w-400">
+                    <a href={`mailto:${employee.email}`}>{employee.email}</a>
+                  </h6>
                 </div>
               </div>
               <div className="row">
                 <div className="col-sm-6">
                   <p className="m-b-10 f-w-600">LinkedIn</p>
-                  <h6 className="text-muted f-w-400">{employee.linkedin}</h6>
+                  <h6 className="text-muted f-w-400">
+                    <a href={employee.linkedin} target="_blank" rel="noopener noreferrer">
+                      {employee.linkedin}
+                    </a>
+                  </h6>
                 </div>
               </div>
               <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Technologies</h6>
@@ -73,7 +84,7 @@ const EmpProfile = ({ employee, onClose }) => {
                     {employee.educationDetails.map((edu, index) => (
                       <li key={index}>
                         <h6>{edu.collegeName} ({edu.collegeCity})</h6>
-                        <p>{edu.courseType}, {edu.joiningDate} - {edu.leavingDate}</p>
+                        <p>{edu.courseType}, {formatDate(edu.joiningDate)} - {formatDate(edu.leavingDate)}</p>
                         <p>Percentage: {edu.percentage}</p>
                         <p>{edu.description}</p>
                       </li>
@@ -88,7 +99,7 @@ const EmpProfile = ({ employee, onClose }) => {
                     {employee.experienceDetails.map((exp, index) => (
                       <li key={index}>
                         <h6>{exp.companyName} ({exp.companyCity})</h6>
-                        <p>{exp.position}, {exp.joiningDate} - {exp.resigningDate}</p>
+                        <p>{exp.position}, {formatDate(exp.joiningDate)} - {formatDate(exp.resigningDate)}</p>
                         <p>{exp.description}</p>
                       </li>
                     ))}
@@ -96,9 +107,21 @@ const EmpProfile = ({ employee, onClose }) => {
                 </div>
               </div>
               <ul className="social-link list-unstyled m-t-40 m-b-10">
-                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i className="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i className="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i className="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                <li>
+                  <a href="#!" data-toggle="tooltip" data-placement="bottom" title="facebook" data-original-title="facebook" data-abc="true">
+                    <i className="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" data-toggle="tooltip" data-placement="bottom" title="twitter" data-original-title="twitter" data-abc="true">
+                    <i className="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" data-toggle="tooltip" data-placement="bottom" title="instagram" data-original-title="instagram" data-abc="true">
+                    <i className="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -109,3 +132,4 @@ const EmpProfile = ({ employee, onClose }) => {
 };
 
 export default EmpProfile;
+    
