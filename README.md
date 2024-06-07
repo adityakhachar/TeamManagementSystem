@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# TeamForge
+A comprehensive Team Management System where employees and companies can register, view each other's details, and get in touch. This responsive web application ensures seamless interaction between job seekers and employers, accessible across various devices including mobile.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Available Scripts
+## Installation
+1. Clone the repository
+    ```bash
+    git clone https://github.com/your-username/teamforge.git
+    ```
+2. Navigate to the project directory
+    ```bash
+    cd backend
+    ```
+3. Install dependencies
+    ```bash
+    npm install
+    ```
 
-In the project directory, you can run:
+## Usage
 
-### `npm start`
+To get the project up and running, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Starting the Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Navigate to the project directory:
+    ```bash
+    cd teamforge
+    ```
 
-### `npm test`
+2. Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Start the frontend development server:
+    ```bash
+    npm start
+    ```
+    This will launch the frontend on `http://localhost:3000`.
 
-### `npm run build`
+### Starting the Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Navigate to the backend directory (if it's in a different folder, adjust the path accordingly):
+    ```bash
+    cd backend
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install the necessary backend dependencies:
+    ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the backend server:
+    ```bash
+    node index.js
+    ```
+    This will launch the backend server on `http://localhost:5000`.
 
-### `npm run eject`
+### Accessing the Application
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Once both the frontend and backend servers are running, you can access the application by navigating to `http://localhost:3000` in your web browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Additional Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Ensure that you have [Node.js](https://nodejs.org/) installed on your machine.
+- The backend server must be running for the frontend application to communicate with it.
+- If you encounter any issues, check the console for error messages and ensure all dependencies are correctly installed.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Features
 
-## Learn More
+### User Authentication
+- **Registration**: Users can register as either an employee or a company.
+- **Login**: Secure login for both employees and companies.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Employee Functionality
+- **Profile Creation**: Employees can create and manage their profiles.
+- **Company Browsing**: Employees can browse and view details of registered companies.
+- **Contact Companies**: Employees can get in touch with companies they are interested in.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Company Functionality
+- **Profile Creation**: Companies can create and manage their profiles.
+- **Employee Browsing**: Companies can browse and view details of registered employees.
+- **Contact Employees**: Companies can get in touch with potential employees.
 
-### Code Splitting
+### Dashboard
+- **User-Specific Dashboards**: Separate dashboards for employees and companies to manage their activities and interactions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Search and Filters
+- **Advanced Search**: Search functionality to find companies or employees based on various criteria.
+- **Filters**: Apply filters to narrow down search results for better matches.
 
-### Analyzing the Bundle Size
+### Notifications
+- **Real-Time Updates**: Notifications for messages and interactions between employees and companies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Responsive Design
+- **Mobile Friendly**: Fully responsive design ensuring usability across different devices and screen sizes.
 
-### Making a Progressive Web App
+### Security
+- **Token-Based Authentication**: Secure token-based authentication for user sessions.
+- **Data Privacy**: Ensuring data privacy and security for all user information.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Screenshots
 
-### Advanced Configuration
+### Dashboard View
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Dashboard View](./screenshots/dashboard.png)
 
-### Deployment
+### Registration Form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Registration Form](./screenshots/registration.png)
 
-### `npm run build` fails to minify
+### Company Details Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Company Details Page](./screenshots/company_details.png)
+
+### How to Upload Screenshots
+
+1. Clone the repository to your local machine.
+2. Navigate to the `/screenshots` directory.
+3. Upload your screenshots using the "Upload files" button.
+4. Reference the screenshots in the README using relative paths.
+
