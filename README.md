@@ -108,22 +108,25 @@ Once both the frontend and backend servers are running, you can access the appli
 
 ## Screenshots
 
-### Dashboard View
+### Dashboard
+![Dashboard](./screenshots/Dashboard.png)
 
-![Dashboard View](./screenshots/dashboard.png)
+### Employee Dashboard
+![Employee Dashboard](https://example.com/screenshots/EmployeeDashboard.png)
 
-### Registration Form
+### Company Dashboard
+![Company Dashboard](https://example.com/screenshots/CompanyDashboard.png)
 
-![Registration Form](./screenshots/registration.png)
+### Employee Login
+![Employee Login](https://example.com/screenshots/EmployeeLogin.png)
 
-### Company Details Page
+### List of Companies (Page 1)
+![List of Companies 1](https://example.com/screenshots/ListofCompany1.png)
 
-![Company Details Page](./screenshots/company_details.png)
+### List of Companies (Page 2)
+![List of Companies 2](https://example.com/screenshots/ListofCompany2.png)
 
-### How to Upload Screenshots
+### List of Employees (Page 1)
+![List of Employees 1](https://example.com/screenshots/ListofEmployee1.png)
 
-1. Clone the repository to your local machine.
-2. Navigate to the `/screenshots` directory.
-3. Upload your screenshots using the "Upload files" button.
-4. Reference the screenshots in the README using relative paths.
 
