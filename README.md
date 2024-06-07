@@ -24,11 +24,53 @@ A comprehensive Team Management System where employees and companies can registe
     ```
 
 ## Usage
-Run the following command to start the project:
-```bash
-npm start
 
-Run the following command to start the Backend:
-```bash
-node index.js
+To get the project up and running, follow these steps:
+
+### Starting the Frontend
+
+1. Navigate to the project directory:
+    ```bash
+    cd teamforge
+    ```
+
+2. Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the frontend development server:
+    ```bash
+    npm start
+    ```
+    This will launch the frontend on `http://localhost:3000`.
+
+### Starting the Backend
+
+1. Navigate to the backend directory (if it's in a different folder, adjust the path accordingly):
+    ```bash
+    cd backend
+    ```
+
+2. Install the necessary backend dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the backend server:
+    ```bash
+    node index.js
+    ```
+    This will launch the backend server on `http://localhost:5000`.
+
+### Accessing the Application
+
+Once both the frontend and backend servers are running, you can access the application by navigating to `http://localhost:3000` in your web browser.
+
+### Additional Notes
+
+- Ensure that you have [Node.js](https://nodejs.org/) installed on your machine.
+- The backend server must be running for the frontend application to communicate with it.
+- If you encounter any issues, check the console for error messages and ensure all dependencies are correctly installed.
+
 
