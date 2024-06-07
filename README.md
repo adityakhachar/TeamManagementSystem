@@ -6,6 +6,7 @@ A comprehensive Team Management System where employees and companies can registe
 - [Usage](#usage)
 - [Features](#features)
 - [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -137,6 +138,13 @@ Once both the frontend and backend servers are running, you can access the appli
 ### Security
 - **Token-Based Authentication**: Secure token-based authentication for user sessions.
 - **Data Privacy**: Ensuring data privacy and security for all user information.
+
+## Technologies Used
+
+- **Frontend**: React, React Router DOM, Bootstrap 5
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (using Mongoose)
+- **Authentication**: JSON Web Tokens (JWT), bcrypt for password hashing
 
 ## Contributing
 ...
