@@ -27,3 +27,8 @@ A comprehensive Team Management System where employees and companies can registe
 Run the following command to start the project:
 ```bash
 npm start
+
+Run the following command to start the Backend:
+```bash
+node index.js
+
