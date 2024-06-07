@@ -118,16 +118,16 @@ Once both the frontend and backend servers are running, you can access the appli
 ![Company Dashboard](./screenshots/CompanyDashboard.png)
 
 ### Employee Login
-![Employee Login](./screenshots/Employeeogin.png)
+![Employee Login](./screenshots/Employeelogin.png)
 
 ### List of Companies (Page 1)
-![List of Companies 1](./screenshots/listofompany1.png)
+![List of Companies 1](./screenshots/listofcompany1.png)
 
 ### List of Companies (Page 2)
 ![List of Companies 2](./screenshots/listofcompany2.png)
 
 ### List of Employees (Page 1)
-![List of Employees 1](./screenshots/listofEmployee1.png)
+![List of Employees 1](./screenshots/listofemployee1.png)
 
 ### List of Employees (Page 2)
 ![List of Employees 1](./screenshots/listofemployee2.png)
