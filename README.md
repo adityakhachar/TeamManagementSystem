@@ -106,5 +106,24 @@ Once both the frontend and backend servers are running, you can access the appli
 - **Token-Based Authentication**: Secure token-based authentication for user sessions.
 - **Data Privacy**: Ensuring data privacy and security for all user information.
 
+## Screenshots
 
+### Dashboard View
+
+![Dashboard View](./screenshots/dashboard.png)
+
+### Registration Form
+
+![Registration Form](./screenshots/registration.png)
+
+### Company Details Page
+
+![Company Details Page](./screenshots/company_details.png)
+
+### How to Upload Screenshots
+
+1. Clone the repository to your local machine.
+2. Navigate to the `/screenshots` directory.
+3. Upload your screenshots using the "Upload files" button.
+4. Reference the screenshots in the README using relative paths.
 
