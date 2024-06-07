@@ -28,6 +28,9 @@ A comprehensive Team Management System where employees and companies can registe
 ### Dashboard
 ![Dashboard](./screenshots/Dashboard.png)
 
+### Dashboard (page 2) 
+![Dashboard](./screenshots/Dashboard2.png)
+
 ### Employee Dashboard
 ![Employee Dashboard](./screenshots/EmployeeDashboard.png)
 
