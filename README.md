@@ -73,4 +73,44 @@ Once both the frontend and backend servers are running, you can access the appli
 - The backend server must be running for the frontend application to communicate with it.
 - If you encounter any issues, check the console for error messages and ensure all dependencies are correctly installed.
 
+## Features
+
+### User Authentication
+- **Registration**: Users can register as either an employee or a company.
+- **Login**: Secure login for both employees and companies.
+
+### Employee Functionality
+- **Profile Creation**: Employees can create and manage their profiles.
+- **Company Browsing**: Employees can browse and view details of registered companies.
+- **Contact Companies**: Employees can get in touch with companies they are interested in.
+
+### Company Functionality
+- **Profile Creation**: Companies can create and manage their profiles.
+- **Employee Browsing**: Companies can browse and view details of registered employees.
+- **Contact Employees**: Companies can get in touch with potential employees.
+
+### Dashboard
+- **User-Specific Dashboards**: Separate dashboards for employees and companies to manage their activities and interactions.
+
+### Search and Filters
+- **Advanced Search**: Search functionality to find companies or employees based on various criteria.
+- **Filters**: Apply filters to narrow down search results for better matches.
+
+### Notifications
+- **Real-Time Updates**: Notifications for messages and interactions between employees and companies.
+
+### Responsive Design
+- **Mobile Friendly**: Fully responsive design ensuring usability across different devices and screen sizes.
+
+### Security
+- **Token-Based Authentication**: Secure token-based authentication for user sessions.
+- **Data Privacy**: Ensuring data privacy and security for all user information.
+
+### Admin Panel (if applicable)
+- **Admin Controls**: Administrative panel for managing users, reviewing content, and overseeing interactions.
+
+### Additional Features
+- **User Feedback**: Collect and manage feedback from users to improve the platform.
+- **Help and Support**: Integrated help and support for users to resolve issues and queries.
+
 
