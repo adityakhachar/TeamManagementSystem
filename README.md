@@ -120,6 +120,9 @@ Once both the frontend and backend servers are running, you can access the appli
 ### Employee Login
 ![Employee Login](./screenshots/Employeelogin.png)
 
+### Company Login
+![Employee Login](./screenshots/Companylogin.png)
+
 ### List of Companies (Page 1)
 ![List of Companies 1](./screenshots/listofcompany1.png)
 
