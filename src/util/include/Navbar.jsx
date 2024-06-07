@@ -1,14 +1,40 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 
 function NavBar() {
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
 
+  const getUserType = () => {
+    const companyAuthToken = localStorage.getItem("companyAuthToken");
+    const employeeAuthToken = localStorage.getItem("employeeAuthToken");
+
+    if (companyAuthToken && employeeAuthToken) {
+      return "both";
+    } else if (companyAuthToken) {
+      return "company";
+    } else if (employeeAuthToken) {
+      return "employee";
+    } else {
+      return "none";
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("companyAuthToken");
+    localStorage.removeItem("employeeAuthToken");
+    localStorage.removeItem("userData");
+
+    navigate("/");
+    window.location.reload();
+  };
+
+  const userType = getUserType();
+
   const handleClick = () => setClick(!click);
-  
-  const closeMenu = () => setClick(false); // Function to close the menu
+  const closeMenu = () => setClick(false);
 
   return (
     <>
@@ -86,6 +112,50 @@ function NavBar() {
                 Employees
               </NavLink>
             </li>
+            {userType === "company" && (
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  className="nav-links"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </NavLink>
+              </li>
+            )}
+            {userType === "employee" && (
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  className="nav-links"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </NavLink>
+              </li>
+            )}
+            {userType === "both" && (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    to="/"
+                    className="nav-links"
+                    onClick={handleLogout}
+                  >
+                    Logout Company
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/"
+                    className="nav-links"
+                    onClick={handleLogout}
+                  >
+                    Logout Employee
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>

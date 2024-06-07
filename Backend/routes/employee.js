@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const Employee = require('../models/Employee');
+const verifyToken = require('../../Backend/verifyToken'); // Import middleware
+
+const jwtSecret = "MyNameIsAdityaKhachar";
 
 // Route to handle employee registration
 router.post('/register', async (req, res) => {
@@ -29,8 +33,8 @@ router.post('/register', async (req, res) => {
             linkedin,
             technologies,
             skills,
-            educationDetails: educationDetails ? educationDetails : [], // Handle potential missing data
-            experienceDetails: experienceDetails ? experienceDetails : [] // Handle potential missing data
+            educationDetails: educationDetails ? educationDetails : [],
+            experienceDetails: experienceDetails ? experienceDetails : []
         });
 
         await newEmployee.save();
@@ -65,25 +69,36 @@ router.post('/emplogin', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
-        // Return the employee object if login is successful
-        res.status(200).json(employee);
+        // Generate JWT token
+        const data = {
+            user: {
+                id: employee.id,
+                name: employee.name
+            }
+        };
+        const authToken = jwt.sign(data, jwtSecret);
+
+        // Return the employee object and authToken if login is successful
+        res.status(200).json({ employee, authToken });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error, please try again later.' });
     }
 });
 
-router.post('/getEmp',async (req,res)=>{
-    try{
-        const employee = await Employee.find({});
-        res.status(200).json(employee);
-    }catch(error){
+// Route to get all employees
+router.get('/getEmp', async (req, res) => {
+    try {
+        const employees = await Employee.find({});
+        res.status(200).json(employees);
+    } catch (error) {
         console.error(error);
-        res.status(500).send("server error");
+        res.status(500).json({ message: 'Server error, please try again later.' });
     }
 });
 
-// Route to get company details by ID
+// Route to get employee details by ID
 router.get('/:id', async (req, res) => {
     const employeeId = req.params.id;
     try {
@@ -93,9 +108,16 @@ router.get('/:id', async (req, res) => {
         }
         res.status(200).json(employeeDetails);
     } catch (error) {
-        console.error('Error fetching company details:', error);
+        console.error('Error fetching employee details:', error);
         res.status(500).json({ message: 'An error occurred while fetching employee details.' });
     }
+});
+
+// Protected route example for employees
+router.get('/auth/protected-employee-route', verifyToken, async (req, res) => {
+    // Only executed if the token is valid
+    // Access authenticated employee information via req.user
+    res.json({ message: 'Protected employee route accessed successfully.', user: req.user });
 });
 
 module.exports = router;

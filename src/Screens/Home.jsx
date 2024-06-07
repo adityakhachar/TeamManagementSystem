@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../util/include/Navbar';
 import Carousle from '../util/components/Carousal';
 import TicketCard from '../util/components/Seelctcard'; // Corrected import path
@@ -31,7 +31,45 @@ const tickets = [
 const greetingText = "Welcome to TeamForge!";
 const chooseText = "Are you looking for a company or an employee?";
 
+const getUserType = () => {
+  const companyAuthToken = localStorage.getItem('companyAuthToken');
+  const employeeAuthToken = localStorage.getItem('employeeAuthToken');
+
+  if (companyAuthToken && employeeAuthToken) {
+    return 'both'; // Both tokens are present
+  } else if (companyAuthToken) {
+    return 'company';
+  } else if (employeeAuthToken) {
+    return 'employee';
+  } else {
+    return 'none'; // No valid token found
+  }
+};
+
 export default function Home() {
+  const [companyName, setCompanyName] = useState('');
+  const [employeeName, setEmployeeName] = useState('');
+
+  useEffect(() => {
+    const userType = getUserType();
+
+    if (userType === 'company' || userType === 'both') {
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (userData && userData.user && userData.user.companyName) {
+        setCompanyName(userData.user.companyName);
+      }
+    }
+
+    if (userType === 'employee' || userType === 'both') {
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (userData && userData.user && userData.user.name) {
+        setEmployeeName(userData.user.name);
+      }
+    }
+  }, []);
+
+  const userType = getUserType();
+
   return (
     <div style={{ backgroundColor: '#E0F4FF', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
@@ -42,6 +80,15 @@ export default function Home() {
       <div className="home-header" style={{ textAlign: 'center', padding: '20px 0', color: '#222831' }}>
         <h1>{greetingText}</h1>
         <p>{chooseText}</p>
+        {userType === 'company' && <p>Hello {companyName}!</p>}
+        {userType === 'employee' && <p>Hello {employeeName}!</p>}
+        {userType === 'both' && (
+          <>
+            <p>Hello {employeeName}!</p>
+            <p>Welcome {companyName}!</p>
+          </>
+        )}
+        {userType === 'none' && <p>Hello Guest!</p>}
       </div>
       <div className="ticket-list" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', padding: '20px 0px' }}>
         {tickets.map((ticket, index) => (

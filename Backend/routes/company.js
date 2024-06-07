@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Company = require('../models/Company');
-
-// Route to handle company registration
+const generateToken = require('../generateToken');
+const verifyToken = require('../../Backend/verifyToken'); // Import middleware
 
 // Route to handle company registration
 router.post('/register', async (req, res) => {
@@ -21,23 +21,20 @@ router.post('/register', async (req, res) => {
             location
         } = req.body;
 
-        // Ensure password is provided
         if (!password) {
             return res.status(400).json({ message: 'Password is required.' });
         }
 
-        // Check if companyEmail already exists
         const existingCompany = await Company.findOne({ companyEmail });
         if (existingCompany) {
             return res.status(400).json({ message: 'Email is already registered.' });
         }
 
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10); // Hash password with salt rounds
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const newCompany = new Company({
             companyName,
-            password: hashedPassword, // Store hashed password
+            password: hashedPassword,
             companyEmail,
             directorName,
             description,
@@ -61,43 +58,45 @@ router.post('/cmplogin', async (req, res) => {
     try {
         const { companyEmail, password } = req.body;
 
-        // Basic validation
         if (!companyEmail || !password) {
             return res.status(400).json({ message: 'Please provide both companyEmail and password.' });
         }
 
-        // Find company by companyEmail
         const company = await Company.findOne({ companyEmail });
 
         if (!company) {
             return res.status(404).json({ message: 'Company not found.' });
         }
 
-        // Compare passwords
         const isMatch = await bcrypt.compare(password, company.password);
 
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
-        // Return the company object if login is successful
-        res.status(200).json(company);
+        const user = {
+            id: company.id,
+            companyName: company.companyName // Include companyName
+        };
+
+        const authToken = generateToken(user);
+        res.status(200).json({ company, authToken });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error, please try again later.' });
     }
 });
 
-router.post('/getComp',async (req,res)=>{
-    try{
+// Route to get all companies
+router.get('/getComp', async (req, res) => {
+    try {
         const companies = await Company.find({});
         res.status(200).json(companies);
-    }catch(error){
+    } catch (error) {
         console.error(error);
-        res.status(500).send("server error");
+        res.status(500).json({ message: 'Server error, please try again later.' });
     }
 });
-
 
 // Route to get company details by ID
 router.get('/:id', async (req, res) => {
@@ -114,5 +113,11 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Protected route example
+router.get('/auth/protected-route', verifyToken, async (req, res) => {
+    // Only executed if the token is valid
+    // Access authenticated company information via req.user
+    res.json({ message: 'Protected company route accessed successfully.', user: req.user });
+});
 
 module.exports = router;

@@ -26,19 +26,25 @@ export default function Company() {
     };
 
     const loadCompany = async () => {
-        try {
-            const response = await fetch("http://localhost:5000/api/company/getComp", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            setCompanyData(data); // Assuming data is an array of company objects
-        } catch (error) {
-            console.error('Error loading company data:', error);
+    try {
+        const response = await fetch("http://localhost:5000/api/company/getComp", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    };
+
+        const data = await response.json();
+        setCompanyData(data); // Assuming data is an array of company objects
+    } catch (error) {
+        console.error('Error loading company data:', error);
+        // Handle error appropriately, such as setting an error state or displaying a message to the user
+    }
+};
 
     useEffect(() => {
         loadCompany();

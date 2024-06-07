@@ -27,7 +27,7 @@ export default function Employee() {
     const loadEmployee = async () => {
         try {
             const response = await fetch("http://localhost:5000/api/employee/getEmp", {
-                method: "POST",
+                method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
                 }

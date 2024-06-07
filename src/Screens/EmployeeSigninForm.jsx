@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeSigninFormm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const EmployeeSigninFormm = () => {
   });
 
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,20 +25,50 @@ const EmployeeSigninFormm = () => {
         password: formData.password
       });
 
-      // Assuming your backend responds with a status code or message indicating success
       if (response.status === 200) {
+        const { authToken } = response.data;
+        localStorage.setItem('employeeAuthToken', authToken);
         console.log('Login successful:', response.data);
-        alert("Login Success!!");
-        // Redirect to home page or dashboard (adjust the logic as per your app's routing)
-        window.location.href = '/'; // Redirect to home page
+
+        await handleVerify(); // Call verification function
       } else {
-        // alert("Login Failure!!");
-        // Handle other response statuses if needed
-        alert(`Login failed. Please check your credentials. ${formData.password } and `);
+        setError('Login failed. Please check your credentials.');
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('Login failed. Please check your credentials.'); // Generic error message
+      setError('Login failed. Please check your credentials.');
+    }
+  };
+
+  const handleVerify = async () => {
+    try {
+      const authToken = localStorage.getItem('employeeAuthToken');
+      console.log('Using authToken:', authToken);
+
+      const response = await fetch("http://localhost:5000/api/employee/auth/protected-employee-route", {
+        method: 'GET',
+        headers: {
+          'Authorization': authToken
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to verify');
+      }
+
+      const json = await response.json();
+      console.log('Verification response:', json);
+
+      if (!json.user || !json.user.id) {
+        throw new Error('Invalid user data');
+      }
+
+      localStorage.setItem("userData", JSON.stringify(json));
+      console.log(localStorage.getItem('userData'));
+      navigate('/');
+    } catch (error) {
+      console.error('Error during verification:', error);
+      setError('An error occurred during verification.');
     }
   };
 
@@ -46,7 +78,7 @@ const EmployeeSigninFormm = () => {
         <header style={{ fontSize: '1.5rem', color: '#333', fontWeight: '500', textAlign: 'center' }}>Employee Signin Form</header>
         <form className="form" onSubmit={handleSubmit}>
           <div style={{ width: '100%', marginTop: '20px' }}>
-            <label htmlFor="CEmail" style={{ color: '#333' }}>Employee Email:</label>
+            <label htmlFor="email" style={{ color: '#333' }}>Employee Email:</label>
             <input
               type="text"
               id="email"
@@ -72,10 +104,8 @@ const EmployeeSigninFormm = () => {
 
           <button type="submit" style={{ height: '55px', width: '100%', color: '#fff', fontSize: '1rem', fontWeight: '400', marginTop: '30px', border: 'none', cursor: 'pointer', transition: 'all 0.2s ease', background: 'rgb(130, 106, 251)' }}>Sign In</button>
 
-          {/* Error message display */}
           {error && <div style={{ marginTop: '10px', color: 'red', textAlign: 'center' }}>{error}</div>}
 
-          {/* Signup Link */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <p style={{ marginBottom: '10px', color: '#333' }}>Not registered yet? Click <a href="/empsignup">here</a> to sign up.</p>
           </div>

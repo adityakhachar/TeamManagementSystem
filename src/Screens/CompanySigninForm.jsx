@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
 
 const CompanySigninForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const CompanySigninForm = () => {
   });
 
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,10 +26,14 @@ const CompanySigninForm = () => {
       });
 
       if (response.status === 200) {
+        const { authToken } = response.data;
+        localStorage.setItem('companyAuthToken', authToken);
         console.log('Login successful:', response.data);
-        alert('Login Successfully!!');
+        
+        await handleVerify(); // Call verification function
+
         // Redirect to home page or dashboard
-        window.location.href = '/'; // Redirect to home page
+        // navigate('/'); // Use navigate to redirect
       } else {
         setError('Login failed. Please check your credentials.');
         alert('Login failed. Please check your credentials.');
@@ -36,6 +42,45 @@ const CompanySigninForm = () => {
       console.error('Login error:', error);
       setError('Login failed. Please try again later.'); // Generic error message
       alert('Login failed. Please try again later.');
+    }
+  };
+
+  const handleVerify = async () => {
+    try {
+      const authToken = localStorage.getItem('companyAuthToken');
+      console.log('Using authToken:', authToken);
+
+      const response = await fetch("http://localhost:5000/api/company/auth/protected-route", {
+        method: 'GET',
+        headers: {
+          'Authorization': authToken
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to verify');
+      }
+
+      const json = await response.json();
+      console.log('Verification response:', json);
+
+      if (!json.user || !json.user.id) {
+        throw new Error('Invalid user data');
+      }
+
+      // alert("Login successful!!");
+      localStorage.setItem("userData", JSON.stringify(json));
+      console.log(localStorage.getItem('userData'));
+      alert("login success");
+      navigate('/');
+      // Optionally update the authToken if the response contains a new one
+      if (json.authToken) {
+        localStorage.setItem("authToken", json.authToken);
+        console.log('Updated authToken:', localStorage.getItem("authToken"));
+      }
+    } catch (error) {
+      console.error('Error during verification:', error);
+      alert('An error occurred during verification.');
     }
   };
 
