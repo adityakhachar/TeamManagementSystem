@@ -23,6 +23,35 @@ A comprehensive Team Management System where employees and companies can registe
     npm install
     ```
 
+## Screenshots
+
+### Dashboard
+![Dashboard](./screenshots/Dashboard.png)
+
+### Employee Dashboard
+![Employee Dashboard](./screenshots/EmployeeDashboard.png)
+
+### Company Dashboard
+![Company Dashboard](./screenshots/CompanyDashboard.png)
+
+### Employee Login
+![Employee Login](./screenshots/EmployeeLogin.png)
+
+### Company Login
+![Company Login](./screenshots/CompanyLogin.png)
+
+### List of Companies (Page 1)
+![List of Companies 1](./screenshots/ListofCompany1.png)
+
+### List of Companies (Page 2)
+![List of Companies 2](./screenshots/ListofCompany2.png)
+
+### List of Employees (Page 1)
+![List of Employees 1](./screenshots/ListofEmployee1.png)
+
+### List of Employees (Page 2)
+![List of Employees 2](./screenshots/ListofEmployee2.png)
+
 ## Usage
 
 To get the project up and running, follow these steps:
@@ -106,33 +135,5 @@ Once both the frontend and backend servers are running, you can access the appli
 - **Token-Based Authentication**: Secure token-based authentication for user sessions.
 - **Data Privacy**: Ensuring data privacy and security for all user information.
 
-## Screenshots
-
-### Dashboard
-![Dashboard](./screenshots/Dashboard.png)
-
-### Employee Dashboard
-![Employee Dashboard](./screenshots/EmployeeDashboard.png)
-
-### Company Dashboard
-![Company Dashboard](./screenshots/CompanyDahboard.png)
-
-### Employee Login
-![Employee Login](./screenshots/Employeelogin.png)
-
-### Company Login
-![Employee Login](./screenshots/Companylogin.png)
-
-### List of Companies (Page 1)
-![List of Companies 1](./screenshots/listofcompany1.png)
-
-### List of Companies (Page 2)
-![List of Companies 2](./screenshots/listofcompany2.png)
-
-### List of Employees (Page 1)
-![List of Employees 1](./screenshots/listofemployee1.png)
-
-### List of Employees (Page 2)
-![List of Employees 1](./screenshots/listofemployee2.png)
-
-
+## Contributing
+...
