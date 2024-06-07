@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../util/include/Navbar';
-import Carousle from '../util/components/Carousal';
+import Carousel from '../util/components/Carousal';
 import TicketCard from '../util/components/Seelctcard'; // Corrected import path
 import './Home.css'; // Import the CSS file
 import Footer from '../util/include/Footer';
@@ -29,7 +29,6 @@ const tickets = [
 ];
 
 const greetingText = "Welcome to TeamForge!";
-const chooseText = "Are you looking for a company or an employee?";
 
 const getUserType = () => {
   const companyAuthToken = localStorage.getItem('companyAuthToken');
@@ -73,28 +72,28 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: '#E0F4FF', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      
       <div>
-        <Carousle />
+        <Carousel />
       </div>
       <div className="home-header" style={{ textAlign: 'center', padding: '20px 0', color: '#222831' }}>
         <h1>{greetingText}</h1>
-        <p>{chooseText}</p>
-        {userType === 'company' && <p>Hello {companyName}!</p>}
-        {userType === 'employee' && <p>Hello {employeeName}!</p>}
+        {userType === 'none' && <p>Are you looking for a company or an employee?</p>}
+        {userType === 'company' && <p style={{  fontSize: '35px', color: '#87C4FF', fontWeight: '700'}}>Hello {companyName}!</p>}
+        {userType === 'employee' && <p style={{  fontSize: '35px', color: '#87C4FF', fontWeight: '700' }}>Hello {employeeName}!</p>}
         {userType === 'both' && (
-          <>
-            <p>Hello {employeeName}!</p>
-            <p>Welcome {companyName}!</p>
-          </>
+           <>
+           <p style={{ fontSize: '35px', color: '#87C4FF', fontWeight: '700' }}>Hello {employeeName}!</p>
+           <p style={{ fontSize: '35px', color: '#87C4FF', fontWeight: '700' }}>Welcome {companyName}!</p>
+         </>
         )}
-        {userType === 'none' && <p>Hello Guest!</p>}
       </div>
-      <div className="ticket-list" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', padding: '20px 0px' }}>
-        {tickets.map((ticket, index) => (
-          <TicketCard key={index} {...ticket} style={{ width: '45%', margin: '10px', flex: '1 0 auto' }} />
-        ))}
-      </div>
+      {userType === 'none' && (
+        <div className="ticket-list" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', padding: '20px 0px' }}>
+          {tickets.map((ticket, index) => (
+            <TicketCard key={index} {...ticket} style={{ width: '45%', margin: '10px', flex: '1 0 auto' }} />
+          ))}
+        </div>
+      )}
       <Footer />
     </div>
   );

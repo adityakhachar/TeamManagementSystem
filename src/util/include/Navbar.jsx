@@ -3,24 +3,24 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 
+const getUserType = () => {
+  const companyAuthToken = localStorage.getItem("companyAuthToken");
+  const employeeAuthToken = localStorage.getItem("employeeAuthToken");
+
+  if (companyAuthToken && employeeAuthToken) {
+    return "both";
+  } else if (companyAuthToken) {
+    return "company";
+  } else if (employeeAuthToken) {
+    return "employee";
+  } else {
+    return "none";
+  }
+};
+
 function NavBar() {
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
-
-  const getUserType = () => {
-    const companyAuthToken = localStorage.getItem("companyAuthToken");
-    const employeeAuthToken = localStorage.getItem("employeeAuthToken");
-
-    if (companyAuthToken && employeeAuthToken) {
-      return "both";
-    } else if (companyAuthToken) {
-      return "company";
-    } else if (employeeAuthToken) {
-      return "employee";
-    } else {
-      return "none";
-    }
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("companyAuthToken");
@@ -29,6 +29,16 @@ function NavBar() {
 
     navigate("/");
     window.location.reload();
+  };
+
+  const handleProtectedNav = (e, path) => {
+    const userType = getUserType();
+    if (userType === "none") {
+      e.preventDefault();
+      alert("You must log in first!");
+    } else {
+      closeMenu();
+    }
   };
 
   const userType = getUserType();
@@ -90,28 +100,32 @@ function NavBar() {
                 Contact Us
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/company"
-                activeClassName="active"
-                className="nav-links"
-                onClick={closeMenu}
-              >
-                Companies
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/employee"
-                activeClassName="active"
-                className="nav-links"
-                onClick={closeMenu}
-              >
-                Employees
-              </NavLink>
-            </li>
+            {userType !== "company" && (
+              <li className="nav-item">
+                <NavLink
+                  exact
+                  to="/company"
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={(e) => handleProtectedNav(e, "/company")}
+                >
+                  Companies
+                </NavLink>
+              </li>
+            )}
+            {userType !== "employee" && (
+              <li className="nav-item">
+                <NavLink
+                  exact
+                  to="/employee"
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={(e) => handleProtectedNav(e, "/employee")}
+                >
+                  Employees
+                </NavLink>
+              </li>
+            )}
             {userType === "company" && (
               <li className="nav-item">
                 <NavLink
