@@ -16,7 +16,7 @@ A comprehensive Team Management System where employees and companies can registe
     ```
 2. Navigate to the project directory
     ```bash
-    cd teamforge
+    cd backend
     ```
 3. Install dependencies
     ```bash
