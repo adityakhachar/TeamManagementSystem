@@ -115,7 +115,7 @@ Once both the frontend and backend servers are running, you can access the appli
 ![Employee Dashboard](./screenshots/EmployeeDashboard.png)
 
 ### Company Dashboard
-![Company Dashboard](./screenshots/CompanyDashboard.png)
+![Company Dashboard](./screenshots/CompanyDahboard.png)
 
 ### Employee Login
 ![Employee Login](./screenshots/Employeelogin.png)
