@@ -106,11 +106,5 @@ Once both the frontend and backend servers are running, you can access the appli
 - **Token-Based Authentication**: Secure token-based authentication for user sessions.
 - **Data Privacy**: Ensuring data privacy and security for all user information.
 
-### Admin Panel (if applicable)
-- **Admin Controls**: Administrative panel for managing users, reviewing content, and overseeing interactions.
-
-### Additional Features
-- **User Feedback**: Collect and manage feedback from users to improve the platform.
-- **Help and Support**: Integrated help and support for users to resolve issues and queries.
 
 
