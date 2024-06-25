@@ -50,7 +50,7 @@ const CompanySigninForm = () => {
       const authToken = localStorage.getItem('companyAuthToken');
       console.log('Using authToken:', authToken);
 
-      const response = await fetch("http://localhost:5000/api/company/auth/protected-route", {
+      const response = await fetch("https://teammanagementsystembackend.onrender.com/api/company/auth/protected-route", {
         method: 'GET',
         headers: {
           'Authorization': authToken
