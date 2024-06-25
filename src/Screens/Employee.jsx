@@ -26,7 +26,7 @@ export default function Employee() {
 
     const loadEmployee = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/employee/getEmp", {
+            const response = await fetch("https://teammanagementsystembackend.onrender.com/api/employee/getEmp", {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
