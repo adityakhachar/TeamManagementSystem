@@ -9,7 +9,7 @@ const EmployeeDetails = () => {
     useEffect(() => {
         const fetchEmployeeDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/employee/${id}`);
+                const response = await fetch(`https://teammanagementsystembackend.onrender.com/api/employee/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch employee details');
                 }
