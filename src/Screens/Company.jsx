@@ -27,7 +27,7 @@ export default function Company() {
 
     const loadCompany = async () => {
     try {
-        const response = await fetch("http://localhost:5000/api/company/getComp", {
+        const response = await fetch("https://teammanagementsystembackend.onrender.com/api/company/getcomp", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
