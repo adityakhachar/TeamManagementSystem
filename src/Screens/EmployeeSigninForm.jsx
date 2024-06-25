@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 const EmployeeSigninFormm = () => {
   const [formData, setFormData] = useState({
@@ -107,7 +107,7 @@ const EmployeeSigninFormm = () => {
           {error && <div style={{ marginTop: '10px', color: 'red', textAlign: 'center' }}>{error}</div>}
 
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <p style={{ marginBottom: '10px', color: '#333' }}>Not registered yet? Click <a href="/empsignup">here</a> to sign up.</p>
+            <p style={{ marginBottom: '10px', color: '#333' }}>Not registered yet? Click <Link to="/empsignup">here</Link> to sign up.</p>
           </div>
         </form>
       </div>
