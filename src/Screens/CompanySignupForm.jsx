@@ -42,7 +42,7 @@ const EmployeeSignUpForm = () => {
     console.log('Form submitted:', formData); 
   
     try {
-      const response = await fetch("http://localhost:5000/api/company/register", {
+      const response = await fetch("https://teammanagementsystembackend.onrender.com/api/company/register", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
