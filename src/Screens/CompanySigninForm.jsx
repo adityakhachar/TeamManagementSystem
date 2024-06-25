@@ -20,7 +20,7 @@ const CompanySigninForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/company/cmplogin', {
+      const response = await axios.post('https://teammanagementsystembackend.onrender.com/api/company/cmplogin', {
         companyEmail: formData.compemail,
         password: formData.password
       });
