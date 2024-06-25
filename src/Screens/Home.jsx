@@ -14,7 +14,7 @@ const tickets = [
     location: 'Montréal, QC',
     date: '12 Juillet 2019',
     disclaimer: 'Ce billet est ni repris, ni échangé, ni remboursé, même en cas de mauvais temps, en cas de perte, de vol ou autres incidents.',
-    regurl: 'empsignup'
+    regurl: '/empsignup'
   },
   {
     image: 'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ',
@@ -24,7 +24,7 @@ const tickets = [
     location: 'Toronto, ON',
     date: '15 Août 2019',
     disclaimer: 'Ce billet est ni repris, ni échangé, ni remboursé, même en cas de mauvais temps, en cas de perte, de vol ou autres incidents.',
-    regurl: 'companysignup'
+    regurl: '/companysignup'
   }
 ];
 
