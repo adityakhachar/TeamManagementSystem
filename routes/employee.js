@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Employee = require('../models/Employee');
-const verifyToken = require('../../Backend/verifyToken'); // Import middleware
+const verifyToken = require('../verifyToken'); // Import middleware
 
 const jwtSecret = "MyNameIsAdityaKhachar";
 

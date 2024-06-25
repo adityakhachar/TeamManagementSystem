@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Company = require('../models/Company');
 const generateToken = require('../generateToken');
-const verifyToken = require('../../Backend/verifyToken'); // Import middleware
+const verifyToken = require('../verifyToken'); // Import middleware
 
 // Route to handle company registration
 router.post('/register', async (req, res) => {
