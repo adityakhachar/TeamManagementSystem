@@ -10,7 +10,7 @@ const CompanyDetails = () => {
     useEffect(() => {
         const fetchCompanyDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/company/${id}`);
+                const response = await fetch(`https://teammanagementsystembackend.onrender.com/api/company/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch company details');
                 }
