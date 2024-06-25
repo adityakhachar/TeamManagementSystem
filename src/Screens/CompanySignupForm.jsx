@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const EmployeeSignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -255,7 +255,7 @@ const EmployeeSignUpForm = () => {
           </div>
           <button type="submit" style={{ height: '55px', width: '100%', color: '#fff', fontSize: '1rem', fontWeight: '400', marginTop: '30px', border: 'none', cursor: 'pointer', transition: 'all 0.2s ease', background: 'rgb(130, 106, 251)' }}>Submit</button>
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <p style={{ marginBottom: '10px', color: '#333' }}>Already registered? Click <a href="/complogin">here</a> to login.</p>
+            <p style={{ marginBottom: '10px', color: '#333' }}>Already registered? Click <Link to="/complogin">here</Link> to login.</p>
           </div>
           {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
         </form>

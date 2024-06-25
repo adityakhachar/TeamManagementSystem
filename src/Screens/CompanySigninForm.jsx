@@ -122,7 +122,7 @@ const CompanySigninForm = () => {
           {/* Signup Link */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <p style={{ marginBottom: '10px', color: '#333' }}>
-              Not registered yet? Click <Link to="/complogin">here</Link> to sign up.
+              Not registered yet? Click <Link to="/companysignup">here</Link> to sign up.
             </p>
           </div>
         </form>
