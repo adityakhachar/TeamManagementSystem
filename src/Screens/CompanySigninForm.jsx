@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
-
+// import { link,useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
+import { Link,useNavigate } from 'react-router-dom';
 const CompanySigninForm = () => {
   const [formData, setFormData] = useState({
     compemail: '',
@@ -122,7 +122,7 @@ const CompanySigninForm = () => {
           {/* Signup Link */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <p style={{ marginBottom: '10px', color: '#333' }}>
-              Not registered yet? Click <a href="/companysignup">here</a> to sign up.
+              Not registered yet? Click <Link to="/complogin">here</Link> to sign up.
             </p>
           </div>
         </form>
