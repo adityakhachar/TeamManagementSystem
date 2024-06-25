@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './TicketCard.css'; // Import the CSS file
 
 function TicketCard({ image, title, subtitle, location, date, disclaimer, regurl }) {
@@ -6,7 +7,7 @@ function TicketCard({ image, title, subtitle, location, date, disclaimer, regurl
     <li className="booking-card" style={{ backgroundImage: `url(${image})` }}>
       <div className="book-container">
         <div className="content">
-          <button className="btn" onClick={() => window.location.href = regurl}>Register</button>
+          <Link to={regurl} className="btn">Register</Link>
         </div>
       </div>
       <div className="informations-container">
